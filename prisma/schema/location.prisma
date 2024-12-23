@@ -7,5 +7,5 @@ model Location {
   item        Item[]
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 }

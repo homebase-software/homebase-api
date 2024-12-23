@@ -9,5 +9,5 @@ model Address {
   country   String
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 }

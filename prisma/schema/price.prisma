@@ -4,7 +4,7 @@ model Price {
   price  Decimal
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 
   // relationships
   item Item @relation(fields: [itemId], references: [id])

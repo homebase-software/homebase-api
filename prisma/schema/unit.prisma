@@ -5,5 +5,5 @@ model Unit {
   isActive   Boolean
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 }

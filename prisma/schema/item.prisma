@@ -6,7 +6,7 @@ model Item {
   isActive    Boolean
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 
   // relationships
   defaultLocation Location @relation(fields: [locationId], references: [id])

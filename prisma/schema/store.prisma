@@ -5,5 +5,5 @@ model Store {
   isActive    Boolean
 
   // metadata
-  createdAt DateTime
+  createdAt DateTime @default(dbgenerated("NOW()"))
 }
