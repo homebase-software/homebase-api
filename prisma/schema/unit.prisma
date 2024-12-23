@@ -1,0 +1,9 @@
+model Unit {
+  id         Int     @id @default(autoincrement())
+  name       String
+  namePlural String
+  isActive   Boolean
+
+  // metadata
+  createdAt DateTime
+}

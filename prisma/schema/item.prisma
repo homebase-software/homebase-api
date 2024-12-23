@@ -1,0 +1,14 @@
+model Item {
+  id          Int     @id @default(autoincrement())
+  locationId  Int
+  name        String
+  description String
+  isActive    Boolean
+
+  // metadata
+  createdAt DateTime
+
+  // relationships
+  defaultLocation Location @relation(fields: [locationId], references: [id])
+  Price           Price[]
+}

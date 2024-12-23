@@ -1,0 +1,13 @@
+model Address {
+  id        Int    @id @default(autoincrement())
+  streetOne String
+  streetTwo String
+  unit      String
+  zipCode   String
+  city      String
+  state     String
+  country   String
+
+  // metadata
+  createdAt DateTime
+}

@@ -1,0 +1,11 @@
+model Location {
+  id          Int     @id @default(autoincrement())
+  parentId    Int
+  name        String
+  description String
+  isActive    Boolean
+  item        Item[]
+
+  // metadata
+  createdAt DateTime
+}

@@ -1,0 +1,9 @@
+model Store {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  isActive    Boolean
+
+  // metadata
+  createdAt DateTime
+}
