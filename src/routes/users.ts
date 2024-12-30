@@ -40,8 +40,8 @@ router.post('/add', async (req: Request, res: Response) => {
 	}
 })
 
-router.delete("/delete", async (req: Request, res: Response) => {
-	const { id } = req.body as User
+router.delete("/:id", async (req: Request, res: Response) => {
+	const id = +req.params.id
 	const errors: string[] = []
 
 	if (!id) errors.push("id is required")
