@@ -1,11 +1,14 @@
 model Location {
-  id          Int     @id @default(autoincrement())
-  parentId    Int
+  id          Int     @id @unique @default(autoincrement())
+  parentId    Int     @unique
   name        String
-  description String
+  description String?
   isActive    Boolean
-  item        Item[]
+
+  parentLocation Location? @relation("LocationRelationship", fields: [parentId], references: [id])
+  childLocation  Location? @relation("LocationRelationship")
 
   // metadata
-  createdAt DateTime @default(dbgenerated("NOW()"))
+  createdAt     DateTime        @default(dbgenerated("NOW()"))
+  ItemLocations ItemLocations[]
 }

@@ -1,0 +1,9 @@
+model ItemLocations {
+  item       Item     @relation(fields: [itemId], references: [id])
+  itemId     Int
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  createdAt  DateTime @default(now())
+
+  @@id([itemId, locationId])
+}
