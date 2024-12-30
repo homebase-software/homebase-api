@@ -10,13 +10,13 @@ export interface User {
 
 const router = Router()
 
-router.post('/new', async (req: Request, res: Response) => {
-	const newUserData = req.body as User
+router.post('/add', async (req: Request, res: Response) => {
+	const { email, firstName, lastName } = req.body as User
 	const errors: string[] = []
 
-	if (!newUserData.email) errors.push('email is required')
-	if (!newUserData.firstName) errors.push('first name is required')
-	if (await prisma.user.findFirst({ where: { email: newUserData.email } }))
+	if (!email) errors.push('email is required')
+	if (!firstName) errors.push('firstName is required')
+	if (await prisma.user.findFirst({ where: { email: email } }))
 		errors.push('a user with that email already exists.')
 	if (errors.length > 0) {
 		res.status(400).json({ errors })
@@ -26,9 +26,9 @@ router.post('/new', async (req: Request, res: Response) => {
 	try {
 		const result = await prisma.user.create({
 			data: {
-				email: newUserData.email!,
-				firstName: newUserData.firstName!,
-				lastName: newUserData.lastName,
+				email: email!,
+				firstName: firstName!,
+				lastName: lastName,
 			},
 		})
 
@@ -40,8 +40,25 @@ router.post('/new', async (req: Request, res: Response) => {
 	}
 })
 
-router.get('/ping', (req: Request, res: Response) => {
-	res.status(200).json('pong')
+router.delete("/delete", async (req: Request, res: Response) => {
+	const { id } = req.body as User
+	const errors: string[] = []
+
+	if (!id) errors.push("id is required")
+	if (errors.length > 0) {
+		res.status(400).json({ errors })
+		return
+	}
+
+	const result = await prisma.user.delete({ where: { id: id } })
+	
+	res.status(200).json(result)
+})
+
+router.get('/list', async (req: Request, res: Response) => {
+	const users = await prisma.user.findMany()
+
+	res.status(200).json(users)
 })
 
 export { router }
