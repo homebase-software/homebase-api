@@ -1,6 +1,6 @@
 model Location {
   id          Int     @id @unique @default(autoincrement())
-  parentId    Int     @unique
+  parentId    Int?     @unique
   name        String
   description String?
   isActive    Boolean
