@@ -1,0 +1,11 @@
+model Price {
+  id     Int     @id @default(autoincrement())
+  itemId Int
+  price  Decimal
+
+  // metadata
+  createdAt DateTime @default(dbgenerated("NOW()"))
+
+  // relationships
+  item Item @relation(fields: [itemId], references: [id])
+}
