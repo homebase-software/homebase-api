@@ -3,7 +3,12 @@ model User {
   email     String  @unique
   firstName String
   lastName  String?
+  isActive  Boolean
+  password  String
 
   // metadata
   createdAt DateTime @default(dbgenerated("NOW()"))
+
+  // relationships
+  Organization Organization[]
 }

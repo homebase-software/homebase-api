@@ -1,0 +1,10 @@
+model Organization {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  userId      Int
+
+  // metadata
+  createdAt DateTime @default(dbgenerated("NOW()"))
+  createdBy User     @relation(fields: [userId], references: [id])
+}
