@@ -1,8 +1,5 @@
-interface User extends UserFields {
-	id: number
-}
-
 interface UserFields {
+	id: number
 	email: string
 	firstName: string
 	lastName: string
@@ -10,4 +7,4 @@ interface UserFields {
 	password: string
 }
 
-export { User as FullUser, UserFields }
+export { UserFields }

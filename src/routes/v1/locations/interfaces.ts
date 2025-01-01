@@ -1,12 +1,9 @@
-interface FullLocation extends LocationDetails {
+interface LocationFields {
 	id: number
-}
-
-interface LocationDetails {
 	parentId: number
 	name: string
 	description: string
 	isActive: boolean
 }
 
-export { FullLocation, LocationDetails }
+export { LocationFields }

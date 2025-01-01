@@ -1,16 +1,33 @@
-import { body, param, ValidationChain } from "express-validator"
-import { FullLocation } from "./interfaces"
+import { body, param, ValidationChain } from 'express-validator'
+import { LocationFields } from './interfaces'
 
-type FullLocationValidationMaps = {
-	[key in keyof FullLocation]: ValidationChain
+type LocationValidationMaps = {
+	[key in keyof LocationFields]: ValidationChain
 }
 
-const validationMaps: FullLocationValidationMaps = {
-	id: param("id").notEmpty().isNumeric(),
-	parentId: body("parentId").optional().isNumeric(),
-	name: body("name").notEmpty().isString(),
-	isActive: body("isActive").notEmpty().isBoolean(),
-	description: body("description").isString()
+const validationMaps: LocationValidationMaps = {
+	id: param('id')
+		.notEmpty()
+		.withMessage('id is required')
+		.isNumeric()
+		.withMessage('id must be numeric'),
+	parentId: body('parentId')
+		.optional()
+		.isNumeric()
+		.withMessage('parentId must be numeric'),
+	name: body('name')
+		.notEmpty()
+		.withMessage('name is required')
+		.isString()
+		.withMessage('name must be a string'),
+	isActive: body('isActive')
+		.notEmpty()
+		.withMessage('isActive is required')
+		.isBoolean()
+		.withMessage('isActive must be a boolean'),
+	description: body('description')
+		.isString()
+		.withMessage('description must be a message'),
 }
 
 export { validationMaps }

@@ -23,7 +23,6 @@ app.use(cors())
 app.use(helmet())
 app.use(cookieParser())
 
-
 // routes
 app.use('/v1', v1)
 
